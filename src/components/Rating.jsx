@@ -12,7 +12,7 @@ function Rating({value}){
     icons[i]=(<FontAwesomeIcon icon={faStar} rotation={180} style={{color: "#9a9996",}} />)
   }
   return (
-  <span className="rating">
+  <span className="bookmark__rating">
     {icons}
   </span>
   );

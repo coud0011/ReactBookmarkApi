@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {fetchAllBookmarks} from "../services/api/bookmarks.js";
-import Rating from "./Rating.jsx";
+import BookmarkItem from "./BookmarkItem.jsx";
 
 function BookmarksList() {
   const [bookmarksData, setBookmarksData] = useState([]);
@@ -14,12 +14,7 @@ function BookmarksList() {
     <section className="bookmarks">
       {bookmarksData.map((bookmark)=> {
         return (
-            <article key={bookmark.id} className="bookmark">
-              {bookmark.name}
-              <Rating value={bookmark.rateAverage //Si vous constatez une erreur ici, c'est un problème d'IDE
-                }>
-              </Rating>
-            </article>
+            <BookmarkItem data={bookmark}></BookmarkItem>
           )
       })}
     </section>
