@@ -1,14 +1,15 @@
+import BookmarksList from "./components/BookmarksList.jsx";
 
 function App() {
   return (
     <div className="app">
-      <header className="">
-        header
+      <header className="app__header header">
+        <h1 className="header__title">Application de partage de signets en React</h1>
       </header>
-      <main className="">
-        Main
+      <main className="app__main">
+        <BookmarksList></BookmarksList>
       </main>
-      <footer className="">
+      <footer className="app__footer footer">
         footer
       </footer>
     </div>

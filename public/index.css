@@ -4,6 +4,8 @@ html, body, #root {
     margin: 0;
     padding: 0;
     display: flex;
+    background-color: #000;
+    color: #ddd;
 }
 
 .app {
@@ -12,25 +14,48 @@ html, body, #root {
     width: 1000px;
     max-width: 1000px;
     margin: 0 auto;
+    background-color: #444;
 }
 
 
-header {
+.app__header {
     min-height: 5em;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: blue 2px dashed;
 }
-main{
+.app__main{
     flex: 1;
+    background-color: #222;
+    border-radius: 3px;
     margin: 0 3px;
     padding: .5em;
     overflow-y: auto;
-    border: black 2px solid;
 }
 
-footer {
+.app__footer {
     text-align: center;
-    border: green 2px dashed;
+}
+
+.header__title {
+    color: #6b8cd9;
+    font-weight: bold;
+    margin: 0;
+}
+
+.bookmarks {
+    display: grid;
+    grid-gap: .5em;
+}
+.bookmark {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    border: 3px solid #444;
+    text-align: center;
+    align-self: center;
+    background-color: transparent;
+    color: #ddd;
+    font-family: inherit;
+    font-size: 1em;
 }
