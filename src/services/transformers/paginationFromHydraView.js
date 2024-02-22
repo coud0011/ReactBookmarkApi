@@ -1,5 +1,3 @@
-import {string} from "prop-types";
-
 export function extractPaginationFromHydraView(hydraView) {
   if (hydraView['hydra:last'] !== undefined){
     let searchParams = new URLSearchParams(hydraView['@id'])

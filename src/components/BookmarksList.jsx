@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {fetchAllBookmarks} from "../services/api/bookmarks.js";
 import BookmarkItem from "./BookmarkItem.jsx";
 import {extractPaginationFromHydraView} from "../services/transformers/paginationFromHydraView.js";
+import Pagination from "./Pagination.jsx";
 
 function BookmarksList() {
   const [bookmarksData, setBookmarksData] = useState([]);
@@ -15,13 +16,18 @@ function BookmarksList() {
   let pagination=extractPaginationFromHydraView(bookmarksPagination);
   console.log(pagination);
   return (
-    <section className="bookmarks">
-      {bookmarksData.map((bookmark)=> {
-        return (
-            <BookmarkItem data={bookmark}></BookmarkItem>
-          )
-      })}
-    </section>
+    <>
+      <div className="bookmarks__list">
+        <section className="bookmarks">
+          {bookmarksData.map((bookmark)=> {
+            return (
+                <BookmarkItem data={bookmark}></BookmarkItem>
+              )
+          })}
+        </section>
+      </div>
+      <Pagination pagination={pagination}></Pagination>
+    </>
   );
 }
 

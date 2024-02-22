@@ -4,10 +4,15 @@ html, body, #root {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #000;
+    background-color: #555;
     color: #ddd;
+    justify-content: center;
 }
+#root {
 
+    max-width: 1000px;
+    border: black;
+}
 .app {
     display: flex;
     flex-direction: column;
@@ -17,20 +22,26 @@ html, body, #root {
     background-color: #444;
 }
 
+.app__main{
+    background-color: #222;
+    border-radius: 3px;
+    margin: 0 3px;
+    padding: .5em;
+    overflow-y: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+div.bookmarks__list{
+    overflow-y: auto;
+    flex: 1;
+}
 
 .app__header {
     min-height: 5em;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.app__main{
-    flex: 1;
-    background-color: #222;
-    border-radius: 3px;
-    margin: 0 3px;
-    padding: .5em;
-    overflow-y: auto;
 }
 
 .app__footer {
@@ -76,5 +87,39 @@ html, body, #root {
 .bookmark__name>a{
     text-decoration: none;
     color: #ddd;
+}
+
+.pagination {
+    display: flex;
+    gap: .5em;
+    padding: .5em;
+}
+
+.pagination__info {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #333;
+    color: #ccc;
+    border: 2px solid #666;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+.button:hover {
+    border: 2px solid #aaa;
+}
+.button:disabled {
+    background-color: #222;
+    border: 2px solid #444;
+    cursor: default;
 }
 
