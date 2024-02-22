@@ -1,35 +1,94 @@
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBackwardFast, faCaretLeft, faCaretRight, faForwardFast} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBackwardFast,
+  faCaretLeft,
+  faCaretRight,
+  faForwardFast,
+} from "@fortawesome/free-solid-svg-icons";
+// eslint-disable-next-line import/extensions
 import Button from "./Button.jsx";
 
-function Pagination({pagination}){
-  let first=true;
-  let previous = true;
-  let next = true;
-  let last = true;
-  if (pagination === null){
-    first = false;
-    previous = false
+// eslint-disable-next-line react/prop-types
+function Pagination({ pagination }) {
+  let firstDisabled = false;
+  let previousDisabled = false;
+  let nextDisabled = false;
+  let lastDisabled = false;
+  if (pagination === null) {
+    firstDisabled = true;
+    previousDisabled = true;
+    nextDisabled = true;
+    lastDisabled = true;
+    // eslint-disable-next-line react/prop-types
+  } else if (pagination.previous === null) {
+    previousDisabled = true;
+    // eslint-disable-next-line react/prop-types
+  } else if (pagination.next === null) {
+    nextDisabled = true;
   }
-  let disableStyle= {color: "#35466C",};
-  let baseStyle = {color: "#6b8cd9",};
+  // eslint-disable-next-line no-console
+  console.error(
+    pagination,
+    firstDisabled,
+    previousDisabled,
+    nextDisabled,
+    lastDisabled,
+  );
+  const disableStyle = { color: "#35466C" };
+  const baseStyle = { color: "#6b8cd9" };
   return (
     <nav className="pagination">
-      <Button class_name="pagination__info" isDisabled={false} doOnClick={()=>{}}>
-        <FontAwesomeIcon icon={faBackwardFast} style={baseStyle} size={"2xl"} />
+      <Button
+        className="pagination__info"
+        isDisabled={firstDisabled}
+        doOnClick={firstDisabled ? () => {} : () => {}}
+      >
+        <FontAwesomeIcon
+          icon={faBackwardFast}
+          style={!firstDisabled ? baseStyle : disableStyle}
+          size="2xl"
+        />
       </Button>
-      <Button class_name="pagination__info" isDisabled={true} doOnClick={()=>{}}>
-        <FontAwesomeIcon icon={faCaretLeft} style={disableStyle} size={"2xl"} />
+      <Button
+        className="pagination__info"
+        isDisabled={previousDisabled}
+        doOnClick={previousDisabled ? () => {} : () => {}}
+      >
+        <FontAwesomeIcon
+          icon={faCaretLeft}
+          style={!previousDisabled ? baseStyle : disableStyle}
+          size="2xl"
+        />
       </Button>
-      <Button class_name="pagination__info" isDisabled={false} doOnClick={()=>{}}>
+      <Button
+        className="pagination__info"
+        isDisabled={false}
+        doOnClick={() => {}}
+      >
         1
       </Button>
-      <Button class_name="pagination__info" isDisabled={false} doOnClick={()=>{}}>
-        <FontAwesomeIcon icon={faCaretRight} style={baseStyle} size={"2xl"} />
+      <Button
+        className="pagination__info"
+        isDisabled={nextDisabled}
+        doOnClick={nextDisabled ? () => {} : () => {}}
+      >
+        <FontAwesomeIcon
+          icon={faCaretRight}
+          style={!nextDisabled ? baseStyle : disableStyle}
+          size="2xl"
+        />
       </Button>
-      <Button class_name="pagination__info" isDisabled={false} doOnClick={()=>{}}>
-        <FontAwesomeIcon icon={faForwardFast} style={baseStyle} size={"2xl"} />
+      <Button
+        className="pagination__info"
+        isDisabled={lastDisabled}
+        doOnClick={lastDisabled ? () => {} : () => {}}
+      >
+        <FontAwesomeIcon
+          icon={faForwardFast}
+          style={!lastDisabled ? baseStyle : disableStyle}
+          size="2xl"
+        />
       </Button>
     </nav>
   );
