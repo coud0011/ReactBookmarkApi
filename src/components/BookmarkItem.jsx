@@ -1,28 +1,36 @@
-import Rating from "./Rating.jsx";
 import React from "react";
-import {avatarUrl} from "../services/api/bookmarks.js";
+import PropTypes from "prop-types";
+import Rating from "./Rating.jsx";
+import { avatarUrl } from "../services/api/bookmarks.js";
 
-function BookmarkItem({data}){
-  let decomposeUser = data.owner.split('/'); //Si vous constatez une erreur ici, c'est un problème d'IDE
-  let userId= decomposeUser[decomposeUser.length-1];
+function BookmarkItem({ data }) {
+  const decomposeUser = data.owner.split("/"); // Si vous constatez une erreur ici, c'est un problème d'IDE
+  const userId = decomposeUser[decomposeUser.length - 1];
   return (
     <article key={data.id} className="bookmark">
-      <Rating value={data.rateAverage //Si vous constatez une erreur ici, c'est un problème d'IDE
-      }>
-      </Rating>
+      <Rating
+        value={
+          data.rateAverage // Si vous constatez une erreur ici, c'est un problème d'IDE
+        }
+      />
       <div className="bookmark__name">
-        <a href={data.url}>
-          {data.name}
-        </a>
+        <a href={data.url}>{data.name}</a>
       </div>
-      <img className="bookmark__avatar"
-           alt={"Avatar de "+data.name}
-           src={avatarUrl(userId)}
-           width="20"
-           height="20">
-      </img>
+      <img
+        className="bookmark__avatar"
+        alt={`Avatar de ${data.name}`}
+        src={avatarUrl(userId)}
+        width="20"
+        height="20"
+      />
     </article>
-  )
+  );
 }
+BookmarkItem.defaultProps = {
+  data: {},
+};
+BookmarkItem.propTypes = {
+  data: PropTypes.node,
+};
 
 export default BookmarkItem;

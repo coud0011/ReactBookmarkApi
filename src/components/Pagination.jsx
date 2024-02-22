@@ -7,14 +7,17 @@ import {
   faForwardFast,
 } from "@fortawesome/free-solid-svg-icons";
 // eslint-disable-next-line import/extensions
+import PropTypes from "prop-types";
+// eslint-disable-next-line import/extensions
 import Button from "./Button.jsx";
 
 // eslint-disable-next-line react/prop-types
-function Pagination({ pagination }) {
+function Pagination({ pagination, setPage }) {
   let firstDisabled = false;
   let previousDisabled = false;
   let nextDisabled = false;
   let lastDisabled = false;
+  let current = 1;
   if (pagination === null) {
     firstDisabled = true;
     previousDisabled = true;
@@ -23,18 +26,14 @@ function Pagination({ pagination }) {
     // eslint-disable-next-line react/prop-types
   } else if (pagination.previous === null) {
     previousDisabled = true;
+    current = pagination.current;
     // eslint-disable-next-line react/prop-types
   } else if (pagination.next === null) {
     nextDisabled = true;
+    current = pagination.current;
+  } else {
+    current = pagination.current;
   }
-  // eslint-disable-next-line no-console
-  console.error(
-    pagination,
-    firstDisabled,
-    previousDisabled,
-    nextDisabled,
-    lastDisabled,
-  );
   const disableStyle = { color: "#35466C" };
   const baseStyle = { color: "#6b8cd9" };
   return (
@@ -42,7 +41,14 @@ function Pagination({ pagination }) {
       <Button
         className="pagination__info"
         isDisabled={firstDisabled}
-        doOnClick={firstDisabled ? () => {} : () => {}}
+        doOnClick={
+          firstDisabled
+            ? () => {}
+            : () => {
+                // eslint-disable-next-line react/prop-types
+                setPage(pagination.first);
+              }
+        }
       >
         <FontAwesomeIcon
           icon={faBackwardFast}
@@ -53,7 +59,14 @@ function Pagination({ pagination }) {
       <Button
         className="pagination__info"
         isDisabled={previousDisabled}
-        doOnClick={previousDisabled ? () => {} : () => {}}
+        doOnClick={
+          previousDisabled
+            ? () => {}
+            : () => {
+                // eslint-disable-next-line react/prop-types
+                setPage(pagination.previous);
+              }
+        }
       >
         <FontAwesomeIcon
           icon={faCaretLeft}
@@ -64,14 +77,28 @@ function Pagination({ pagination }) {
       <Button
         className="pagination__info"
         isDisabled={false}
-        doOnClick={() => {}}
+        doOnClick={
+          lastDisabled
+            ? () => {}
+            : () => {
+                // eslint-disable-next-line react/prop-types
+                setPage(pagination.current);
+              }
+        }
       >
-        1
+        {current}
       </Button>
       <Button
         className="pagination__info"
         isDisabled={nextDisabled}
-        doOnClick={nextDisabled ? () => {} : () => {}}
+        doOnClick={
+          nextDisabled
+            ? () => {}
+            : () => {
+                // eslint-disable-next-line react/prop-types
+                setPage(pagination.next);
+              }
+        }
       >
         <FontAwesomeIcon
           icon={faCaretRight}
@@ -82,7 +109,14 @@ function Pagination({ pagination }) {
       <Button
         className="pagination__info"
         isDisabled={lastDisabled}
-        doOnClick={lastDisabled ? () => {} : () => {}}
+        doOnClick={
+          lastDisabled
+            ? () => {}
+            : () => {
+                // eslint-disable-next-line react/prop-types
+                setPage(pagination.last);
+              }
+        }
       >
         <FontAwesomeIcon
           icon={faForwardFast}
@@ -93,5 +127,11 @@ function Pagination({ pagination }) {
     </nav>
   );
 }
+// eslint-disable-next-line react/default-props-match-prop-types
+Pagination.defaultProps = { pagination: null, setPage: () => {} };
+Pagination.propTypes = {
+  pagination: PropTypes.node,
+  setPage: PropTypes.func,
+};
 
 export default Pagination;
