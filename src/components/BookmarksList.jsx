@@ -32,23 +32,23 @@ function BookmarksList() {
       <Pagination pagination={pagination} setPage={setPage} />
     </>
   );
-  console.error("Test");
   if (!loading) {
     if (bookmarksData === null) {
-      setBookmarksData([]);
+      setLoading(true);
+    } else {
+      res = (
+        <>
+          <div className="bookmarks__list">
+            <section className="bookmarks">
+              {bookmarksData.map((bookmark) => (
+                <BookmarkItem data={bookmark} />
+              ))}
+            </section>
+          </div>
+          <Pagination pagination={pagination} setPage={setPage} />
+        </>
+      );
     }
-    res = (
-      <>
-        <div className="bookmarks__list">
-          <section className="bookmarks">
-            {bookmarksData.map((bookmark) => (
-              <BookmarkItem data={bookmark} />
-            ))}
-          </section>
-        </div>
-        <Pagination pagination={pagination} setPage={setPage} />
-      </>
-    );
   }
   return res;
 }

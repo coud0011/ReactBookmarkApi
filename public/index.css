@@ -31,6 +31,7 @@ html, body, #root {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 div.bookmarks__list{
     overflow-y: auto;
